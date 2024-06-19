@@ -42,7 +42,7 @@ def convex_hull(points):
     print("Initial L(L): ", L_lower)
     for i in range(n-3, -1, -1):
         L_lower.append(points[i])
-        while len(L_lower) > 2 and right_or_left_turn(L_lower[len(L_lower)-3], L_lower[len(L_lower)-2],L_lower[len(L_lower)-1] ) == True:
+        while len(L_lower) > 2 and right_or_left_turn(L_lower[len(L_lower)-3], L_lower[len(L_lower)-2],L_lower[len(L_lower)-1] ) == False:
             del L_lower[len(L_lower)-2]
             print("L(L) after deletion: ", L_lower)
     L_lower = L_lower[1:-1]
