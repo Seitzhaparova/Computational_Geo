@@ -1,0 +1,52 @@
+Let's continue our chapter 1 on 16th page now 
+
+What's the main problem in computations?
+We need to consider the case when the point r lies on line pq, which is our 3rd case
+Now, take a note that all calculations are done in float arithmetic and there'll always be some round error in calculations
+imagine some points p,q,r where r is almost on the same line as line pq. Round error can give us a result where r is on pq, or even worse, number of tests will
+give different results
+
+To solve such risk of errors we will improve our algorithm and develop an incremental algorithm
+
+What's incremental algorithm?
+An algorithm that updates an exisitng model incrementally, using one training example at time
+In our case it means that we'll add points of P one by one from left to right
+That means, that we sort our points pi by x-coordinate and start to form upper and lower hull
+
+--Upper Hull  - part of convex hull from leftmost point to rightmost point
+--Lower Hull - same as upper hull but vise versa
+
+Why do we chesk 3 last points in Lupper?
+The reason for checking the last three points is to ensure that the points form a valid convex hull, which is defined by a series of "right turns" (for the upper hull)
+or "left turns" (for the lower hull) when traversing the points.
+For a set of points to form a convex hull, any three consecutive points must not form a "left turn" for Lupper
+If they do, the middle point is not part of convex hull upper part and therefore must be deleted
+
+Algorithm Convex Hull Increment Development
+---input:  a set of points P in the plane
+---output: a list containing the vertices CH(P) in clockwise order
+1. Sort the points by x-coordinate resulting in new sequence of points {p1,p2,...,pn}
+2. Put the points p1a and p2 in Lupper, with p1 as the first point
+3. for i<- 3 to n
+4.      do append pi to Lupper
+5.          while Lupper contains more than two points and the last three points in Lupper do not make a right turn
+6.             do delete the middle of the last three points from Lupper
+7. Put the point pn to p(n-1) in a list Llower with pn as the first point
+8. for i<-n-2 downto 1
+9.      do append pi to Llower
+10.         while Llower contains more than 2 points and the last three points in Llower do not make a right turn
+11.             do delete the middle of the last three points from Llower
+12. Remove the first and the last point from Llower to avoid duplication of the points where the upper and the lower hulls meet
+13. Append Llower to Lupper and call the resulting list L
+14. Return L
+
+What if two or more points have the same x-coordinate?
+We first sort by x-coordinate and if points have the same x, we sort then by y-coordinate
+
+What of three points are on the same line?
+Then, they do not form a right turn and our function will return false and middle point will be deleted
+However, that's good since we need to find minimal such polygon. So, this algorithm solves our problem of previous
+
+Theorem 1.1 The convex hull of a set of n points in the plane can be computed in O(nlogn) time
+You can check proof on 19th page. I was too lazy to write all of it
+
