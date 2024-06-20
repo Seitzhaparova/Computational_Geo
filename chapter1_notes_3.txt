@@ -1,0 +1,44 @@
+We now start 1.2 part of Degeneracies and Robustness
+Generally, the development of a geometric algorithm goes through 3 phases:
+1. We ignore everything that will clutter our understanding of geometrical concepts we're dealing with
+2. We have to adjust our algorithm designed in the first phase to correct the presence of degenerate cases
+3. Actual implementation and dealing with testing
+
+What are degenerate cases?
+That term refers to atypical conditions in the input data that can cause a geometric algorithm to behave differently 
+than expected
+In our case with CH(P) it was collinear points 
+
+What's Robustness?
+It's the context in geometric algorithms that refers to the ability of algorithm to
+handle a wide variety of inputs, including those that may cause issues due to specieal degenerate cases
+
+So, when you develop any algorithm you can keep track on those 3 steps to make sure, that your algorithm will be good enough
+
+1.3 Application Domains
+This part will tell us on motivating examples of application for every geometric concept or data structure
+Most of them are connected to next fields:
+---Computer graphics: 
+Creating images of modeled scenes to display on a computer screen or other output device. 
+---Robotics:
+Design and use of robots. 
+---Geographic information systems:
+Also called GIS for short. Store geographical data and used to extract information about certain regions
+---CAD/CAM:
+Computer Aided Desing concerns itself with the design of products with a computer. 
+Computer Aided Manufacturing manufactures the product once it has been designed and tested with CAD
+---Other application domains:
+Molecular modeling, patter recognition, records in database[somehow?]
+
+1.5 Exercises
+I don't know how to put all solutions here, but I'll write them on paper for now
+
+Good note on cross-product:
+You can replace brite-force calculations of cross-product with finding the sigh of determinant 
+of the next matrice using simple numpy:
+
+D = [[1, px, py], [1, qx, qy], [1, rx, ry]]
+Det(D) is indeed the same cross-product equation we've used before
+
+What will be comvex hull of a set of points of vertical line?
+It will take only two points: the lowest and the highest on y-coordinates
